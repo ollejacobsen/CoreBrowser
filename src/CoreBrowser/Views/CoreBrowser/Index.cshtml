@@ -1,0 +1,75 @@
+﻿@using CoreBrowser.Extensions
+@model CoreBrowser.Models.CurrentDirectoryModel
+@{
+	ViewData["Title"] = "Core Browser";
+}
+
+<div class="row">
+	<ol class="breadcrumb">
+		@foreach (var dir in Model.GetBreadcrumbList())
+		{
+			@Html.Raw(dir.ToHtml())
+		}
+	</ol>
+
+	@if (!string.IsNullOrWhiteSpace(Model.HeaderContent))
+	{
+		<div id="header-content">
+			@Html.Raw(Model.HeaderContent)
+		</div>
+	}
+
+	<table class="table table-hover sortable">
+		<thead>
+		<tr>
+			<th class="col-sm-1"></th>
+			<th data-sort="string">Name <span class="sort-arrows sort-arrows-dark"><span class="up"></span><span class="down"></span></span></th>
+			<th class="col-sm-2" data-sort="int">Last modified <span class="sort-arrows sort-arrows-dark"><span class="up"></span><span class="down"></span></span></th>
+			<th class="col-sm-1" data-sort="string">Ext. <span class="sort-arrows sort-arrows-dark"><span class="up"></span><span class="down"></span></span></th>
+			<th class="col-sm-1" data-sort="int">Size <span class="sort-arrows sort-arrows-dark"><span class="up"></span><span class="down"></span></span></th>
+		</tr>
+		</thead>
+		<tbody>
+		@if (Model.Parent != null)
+		{
+			<tr data-sort-ignore data-url="@Model.Parent.Path" data-type="parent-folder">
+				<td><i class="fa fa-folder-open" aria-hidden="true"></i><i class="fa fa-level-up" aria-hidden="true"></i></td>
+				<td><a title="Go one level up" href="@Model.Parent.Path"><strong>@Model.Parent.Name</strong></a></td>
+				<td></td>
+				<td></td>
+				<td data-sort-value="0"></td>
+			</tr>
+		}
+
+		@foreach (var dir in Model.Directories)
+		{
+			<tr data-url="@dir.Path" data-type="folder" title="@($"Last updated: {dir.LastWriteTime}")">
+				<td><i class="fa fa-folder" aria-hidden="true"></i></td>
+				<td><a href="@dir.Path">@dir.Name</a></td>
+				<td data-sort-value="@dir.LastWriteTime.Ticks">@dir.LastWriteTime.ToString()</td>
+				<td></td>
+				<td data-sort-value="0"></td>
+			</tr>
+		}
+		@foreach (var file in Model.Files)
+		{
+			<tr data-url="@file.Path" data-type="@file.GetKnownType()" title="@($"Filename: {file.Name}\nLast updated: {file.LastWriteTime}")">
+				<td><i class="fa @file.GetFontAwsomeIcon()" aria-hidden="true"></i></td>
+				<td>
+					@if (file.GetKnownType() == "image")
+					{
+						<a data-toggle="lightbox" data-gallery="galleryname" href="@file.Path">@file.NameWithoutExtension</a>
+					}
+					else
+					{
+						<a href="@file.Path">@file.NameWithoutExtension</a>
+					}
+				</td>
+				<td data-sort-value="@file.LastWriteTime.Ticks">@file.LastWriteTime.ToString()</td>
+				<td>@file.Extension.ToLower()</td>
+				<td data-sort-value="@file.Size.Length">@file.Size.ToPrettySize(1)</td>
+			</tr>
+		}
+		</tbody>
+	</table>
+</div>
