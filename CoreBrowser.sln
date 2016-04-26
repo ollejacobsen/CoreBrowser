@@ -8,6 +8,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{BA8EF494-EEB5-49BD-8FD5-A866478E695F}"
 	ProjectSection(SolutionItems) = preProject
 		global.json = global.json
+		README.md = README.md
 	EndProjectSection
 EndProject
 Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "CoreBrowser", "src\CoreBrowser\CoreBrowser.xproj", "{2E112AE2-B716-4EE1-B221-2B82124FA3B5}"
