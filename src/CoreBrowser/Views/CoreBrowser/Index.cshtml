@@ -5,12 +5,7 @@
 }
 
 <div class="row">
-	<ol class="breadcrumb">
-		@foreach (var dir in Model.GetBreadcrumbList())
-		{
-			@Html.Raw(dir.ToHtml())
-		}
-	</ol>
+	<breadcrumbs path="@Model.Path" root="Home"></breadcrumbs>
 
 	@if (!string.IsNullOrWhiteSpace(Model.HeaderContent))
 	{
