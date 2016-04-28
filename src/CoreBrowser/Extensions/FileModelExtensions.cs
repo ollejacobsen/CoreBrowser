@@ -24,6 +24,14 @@ namespace CoreBrowser.Extensions
 					return "fa-excel-o";
 				case "powerpoint":
 					return "fa-file-powerpoint-o";
+				case "archive":
+				    return "fa-file-archive-o";
+				case "code":
+				    return "fa-file-code-o";
+				case "video":
+				    return "fa-file-video-o";
+				case "audio":
+				    return "fa-file-audio-o";
 				default:
 				    return "fa-file-o";
 		    }
@@ -50,7 +58,31 @@ namespace CoreBrowser.Extensions
 					return "excel";
 				case ".ppt":
 				case ".pptx":
-					return "powerpoint-";
+					return "powerpoint";
+				case ".zip":
+				case ".rar":
+				case ".7zip":
+				case ".tar":
+				case ".gz":
+				case ".lzma":
+					return "archive";
+				case ".js":
+				case ".jsx":
+				case ".json":
+				case ".htm":
+				case ".html":
+				case ".cshtml":
+				case ".cs":
+					return "code";
+				case ".mpeg":
+				case ".avi":
+				case ".mpg":
+				case ".mkv":
+					return "video";
+				case ".mp3":
+				case ".aac":
+				case ".wave":
+					return "audio";
 				default:
 					return "file";
 			}
