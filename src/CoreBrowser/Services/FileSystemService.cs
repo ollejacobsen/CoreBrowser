@@ -190,7 +190,7 @@ namespace CoreBrowser.Services
 				{
 					content = r.ReadToEnd();
 				}
-				catch (Exception ex)
+				catch (Exception)
 				{
 					//swallow
 				}	
