@@ -158,3 +158,4 @@ project.lock.json
 src/*/node_modules/
 src/CoreBrowser/wwwroot/files/
 src/CoreBrowser/Properties/PublishProfiles/
+src/CoreBrowser/appsettings.Production.json
