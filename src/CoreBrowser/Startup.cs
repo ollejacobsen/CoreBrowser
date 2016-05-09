@@ -16,7 +16,8 @@ namespace CoreBrowser
             // Set up configuration sources.
             var builder = new ConfigurationBuilder()
                 .AddJsonFile("appsettings.json")
-                .AddEnvironmentVariables();
+				.AddJsonFile($"appsettings.{env.EnvironmentName}.json", true)
+				.AddEnvironmentVariables();
 
             Configuration = builder.Build();
 
@@ -33,9 +34,12 @@ namespace CoreBrowser
 				.AddExcludedFileNames("web.config")
 				.Build();
 			services.AddInstance<IFileSystemService>(new FileSystemService(conf));
-			
-            services.AddMvc();
-        }
+			services.AddInstance<IConfiguration>(Configuration);
+
+			services.AddMvc();
+
+			services.Configure<SharpBrowserConfiguration>(Configuration.GetSection("SharpBrowser"));
+		}
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)

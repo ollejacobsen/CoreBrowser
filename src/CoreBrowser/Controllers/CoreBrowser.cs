@@ -3,23 +3,29 @@ using System.Net;
 using Microsoft.AspNet.Mvc;
 using CoreBrowser.Helpers;
 using CoreBrowser.Services;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.OptionsModel;
 
 namespace CoreBrowser.Controllers
 {
     public class CoreBrowser : Controller
     {
 	    private readonly IFileSystemService _fileService;
+	    private readonly SharpBrowserConfiguration _configuration;
 
-		public CoreBrowser(IFileSystemService fileService)
-		{
-			_fileService = fileService;
-		}
+	    public CoreBrowser(IFileSystemService fileService, IOptions<SharpBrowserConfiguration> configuration)
+	    {
+		    _fileService = fileService;
+		    _configuration = configuration.Value;
+	    }
 
-		public IActionResult Index(string url)
+	    public IActionResult Index(string url)
 		{
 			if (_fileService.IsFile(url))
 				return ResponseWithFile(url);
 
+
+		    ViewBag.GoogleUA = _configuration.GaTrackingUA;
 			var model = _fileService.GetDirectory(url);
 			return View("Index", model);
 		}
