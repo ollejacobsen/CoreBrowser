@@ -29,8 +29,9 @@ namespace CoreBrowser
         public void ConfigureServices(IServiceCollection services)
         {
 			//Custom service
-	        var conf = new FileSystemConfiguration(_hostingEnv.WebRootPath, "files")
-				.AddExcludedFileNames("web.config").Build();
+	        var conf = new FileSystemConfiguration(_hostingEnv.WebRootPath, Configuration["SharpBrowser:RootFolderInWWWRoot"])
+				.AddExcludedFileNames("web.config")
+				.Build();
 			services.AddInstance<IFileSystemService>(new FileSystemService(conf));
 			
             services.AddMvc();
