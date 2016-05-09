@@ -41,7 +41,7 @@
 			<tr data-url="@dir.Path" data-type="folder" title="@($"Last updated: {dir.LastWriteTime}")">
 				<td><i class="fa fa-folder" aria-hidden="true"></i></td>
 				<td><a href="@dir.Path">@dir.Name</a></td>
-				<td data-sort-value="@dir.LastWriteTime.Ticks">@dir.LastWriteTime.ToString()</td>
+				<td data-sort-value="@dir.LastWriteTime.Ticks">@dir.LastWriteTime.ToString("yyyy-MM-dd HH:mm")</td>
 				<td></td>
 				<td data-sort-value="0"></td>
 			</tr>
@@ -60,7 +60,7 @@
 						<a href="@file.Path">@file.NameWithoutExtension</a>
 					}
 				</td>
-				<td data-sort-value="@file.LastWriteTime.Ticks">@file.LastWriteTime.ToString()</td>
+				<td data-sort-value="@file.LastWriteTime.Ticks">@file.LastWriteTime.ToString("yyyy-MM-dd HH:mm")</td>
 				<td>@file.Extension.ToLower()</td>
 				<td data-sort-value="@file.Size.Length">@file.Size.ToPrettySize(1)</td>
 			</tr>
