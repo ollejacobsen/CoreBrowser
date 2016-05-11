@@ -20,6 +20,7 @@
 				loadingMessage: '<div class="text-center"><i class="fa fa-circle-o-notch fa-spin fa-3x fa-fw margin-bottom"></i><span class="sr-only">Loading...</span></div>'
 			});
 		} else {
+			ga('send', 'event', 'Download', type, url);
 			window.location.href = url;
 		}
 	});
