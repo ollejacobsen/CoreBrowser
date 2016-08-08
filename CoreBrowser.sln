@@ -1,21 +1,20 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.25123.0
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{1C1815C3-1C74-47B3-9396-F5EA68489755}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{F72F134D-B079-499A-8B89-ADAE2A78A68E}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{BA8EF494-EEB5-49BD-8FD5-A866478E695F}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{1DB0972D-B7B2-4DAB-817E-90A762784254}"
 	ProjectSection(SolutionItems) = preProject
 		global.json = global.json
-		README.md = README.md
 	EndProjectSection
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "CoreBrowser", "src\CoreBrowser\CoreBrowser.xproj", "{2E112AE2-B716-4EE1-B221-2B82124FA3B5}"
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "CoreBrowser", "src\CoreBrowser\CoreBrowser.xproj", "{8ABD64BB-9914-45BA-A79E-C1121B03C2CA}"
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "CoreBrowser.Tests", "tests\CoreBrowser.Tests\CoreBrowser.Tests.xproj", "{4DB043BD-6533-4FAA-ABF3-9663895255FC}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{65A2FF2C-AD7D-4426-B743-BCB2DC635A66}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{C915D28A-AF22-4944-9B4C-85A2047515B1}"
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "CoreBrowser.Tests", "tests\CoreBrowser.Tests\CoreBrowser.Tests.xproj", "{80A35C64-7E63-45D5-955D-B83185A9C9BB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,20 +22,20 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{2E112AE2-B716-4EE1-B221-2B82124FA3B5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2E112AE2-B716-4EE1-B221-2B82124FA3B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2E112AE2-B716-4EE1-B221-2B82124FA3B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2E112AE2-B716-4EE1-B221-2B82124FA3B5}.Release|Any CPU.Build.0 = Release|Any CPU
-		{4DB043BD-6533-4FAA-ABF3-9663895255FC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4DB043BD-6533-4FAA-ABF3-9663895255FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4DB043BD-6533-4FAA-ABF3-9663895255FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4DB043BD-6533-4FAA-ABF3-9663895255FC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8ABD64BB-9914-45BA-A79E-C1121B03C2CA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8ABD64BB-9914-45BA-A79E-C1121B03C2CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8ABD64BB-9914-45BA-A79E-C1121B03C2CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8ABD64BB-9914-45BA-A79E-C1121B03C2CA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{80A35C64-7E63-45D5-955D-B83185A9C9BB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{80A35C64-7E63-45D5-955D-B83185A9C9BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{80A35C64-7E63-45D5-955D-B83185A9C9BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{80A35C64-7E63-45D5-955D-B83185A9C9BB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{2E112AE2-B716-4EE1-B221-2B82124FA3B5} = {1C1815C3-1C74-47B3-9396-F5EA68489755}
-		{4DB043BD-6533-4FAA-ABF3-9663895255FC} = {C915D28A-AF22-4944-9B4C-85A2047515B1}
+		{8ABD64BB-9914-45BA-A79E-C1121B03C2CA} = {F72F134D-B079-499A-8B89-ADAE2A78A68E}
+		{80A35C64-7E63-45D5-955D-B83185A9C9BB} = {65A2FF2C-AD7D-4426-B743-BCB2DC635A66}
 	EndGlobalSection
 EndGlobal

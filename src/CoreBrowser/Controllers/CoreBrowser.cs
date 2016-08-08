@@ -1,19 +1,18 @@
 ﻿using System.IO;
 using System.Net;
-using Microsoft.AspNet.Mvc;
+using Microsoft.AspNetCore.Mvc;
 using CoreBrowser.Helpers;
 using CoreBrowser.Services;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.OptionsModel;
+using Microsoft.Extensions.Options;
 
 namespace CoreBrowser.Controllers
 {
     public class CoreBrowser : Controller
     {
 	    private readonly IFileSystemService _fileService;
-	    private readonly SharpBrowserConfiguration _configuration;
+	    private readonly CoreBrowserConfiguration _configuration;
 
-	    public CoreBrowser(IFileSystemService fileService, IOptions<SharpBrowserConfiguration> configuration)
+	    public CoreBrowser(IFileSystemService fileService, IOptions<CoreBrowserConfiguration> configuration)
 	    {
 		    _fileService = fileService;
 		    _configuration = configuration.Value;

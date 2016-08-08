@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace CoreBrowser
 {
-    public class SharpBrowserConfiguration
+    public class CoreBrowserConfiguration
     {
 		public string RootFolderInWWWRoot { get; set; }
 		public string GaTrackingUA { get; set; }

@@ -1,11 +1,9 @@
 version: 1.0.{build}
-install:
-- cmd: dnvm upgrade 1.0.0-rc1-update2 -r coreclr
-cache: C:\Users\appveyor\.dnx\
+cache: C:\Users\appveyor\.nuget\
 before_build:
-- cmd: dnu restore
+- cmd: dotnet restore
 build:
   project: CoreBrowser.sln
   verbosity: minimal
 test_script:
-- ps: dnx -p c:\projects\corebrowser\tests\CoreBrowser.Tests test
+- ps: dotnet -p c:\projects\corebrowser\tests\CoreBrowser.Tests test

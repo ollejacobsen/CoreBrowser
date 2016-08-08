@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Text;
-using Microsoft.AspNet.Razor.TagHelpers;
+using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace CoreBrowser.TagHelpers
 {
@@ -37,12 +37,16 @@ namespace CoreBrowser.TagHelpers
 				builder.AppendLine(element);
 				lastPath = currentPath;
 			}
-
+			
 			output.TagName = "ol";
-			if (output.Attributes["class"] == null)
-				output.Attributes["class"] += "breadcrumb";
+
+			if (output.Attributes.ContainsName("class"))
+			{
+				var existingValue = output.Attributes["class"].Value;
+				output.Attributes.SetAttribute("class", $"{existingValue} breadcrumb");
+			}
 			else
-				output.Attributes["class"].Value += " breadcrumb";
+				output.Attributes.SetAttribute("class", "breadcrumb");
 			
 			output.Content.SetHtmlContent(builder.ToString());
 
