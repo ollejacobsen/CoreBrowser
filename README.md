@@ -1,6 +1,7 @@
 # CoreBrowser
 
 [![Build status](https://ci.appveyor.com/api/projects/status/2i85nqapq6i2ed0v?svg=true)](https://ci.appveyor.com/project/ollejacobsen/corebrowser)
+[![Build Status](https://travis-ci.org/ollejacobsen/CoreBrowser.svg?branch=master)](https://travis-ci.org/ollejacobsen/CoreBrowser)
 
 A simple web file system browser build with .NET Core and MVC6. 
 Replacement for the standard web "directory browsing". Runs on Windows, OSX and Linux.
