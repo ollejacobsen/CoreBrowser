@@ -4,7 +4,7 @@
 [![Build Status](https://travis-ci.org/ollejacobsen/CoreBrowser.svg?branch=master)](https://travis-ci.org/ollejacobsen/CoreBrowser)
 
 A simple web file system browser build with .NET Core and MVC6. 
-Replacement for the standard web "directory browsing". Runs on Windows and Linux. Should hopefully run on OSX as well but this is not tested yet.
+Replacement for the standard web "directory browsing". Runs on Windows, Linux and OSX.
 
 You can see a demo at [http://corebrowser20161026075844.azurewebsites.net/](http://corebrowser20161026075844.azurewebsites.net/)
 
