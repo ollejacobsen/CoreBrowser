@@ -159,3 +159,4 @@ src/*/node_modules/
 src/CoreBrowser/Properties/PublishProfiles/
 src/CoreBrowser/appsettings.Production.json
 src/CoreBrowser/.vscode/
+src/CoreBrowser/appsettings.Demo.json
