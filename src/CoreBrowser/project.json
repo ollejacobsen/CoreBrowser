@@ -37,7 +37,8 @@
 
 	"runtimes": {
 		"win10-x64": {},
-		"ubuntu.14.10-x64": {}
+		"win81-x64": {},
+		"ubuntu.14.04-x64": {}
 	},
 
 	"buildOptions": {
