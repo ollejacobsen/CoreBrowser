@@ -4,6 +4,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using CoreBrowser.Services;
+using CoreBrowser.Models;
 
 namespace CoreBrowser
 {
@@ -34,6 +35,7 @@ namespace CoreBrowser
 
 			services.AddTransient<IFileSystemService>(x => new FileSystemService(conf));
 			services.AddTransient<IConfiguration>(x => Configuration);
+			services.AddTransient<ICoreBrowserRazorView, CoreBrowserRazorView>();
 
 			// Add framework services.
 			services.AddMvc();

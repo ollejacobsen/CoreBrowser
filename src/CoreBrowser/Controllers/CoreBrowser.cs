@@ -23,8 +23,6 @@ namespace CoreBrowser.Controllers
 			if (_fileService.IsFile(url))
 				return ResponseWithFile(url);
 
-
-		    ViewBag.GoogleUA = _configuration.GaTrackingUA;
 			var model = _fileService.GetDirectory(url);
 			return View("Index", model);
 		}

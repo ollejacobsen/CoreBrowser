@@ -9,5 +9,6 @@ namespace CoreBrowser
     {
 		public string RootFolderInWWWRoot { get; set; }
 		public string GaTrackingUA { get; set; }
+		public string TitleSuffix { get; set; }
 	}
 }
