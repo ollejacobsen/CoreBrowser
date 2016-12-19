@@ -36,12 +36,10 @@ namespace CoreBrowser.Services
 			}
 		}
 
-		public FileSystemConfiguration(string wwwrootPath, string wwwEntryFolderPath)
+		public FileSystemConfiguration(string rootDirectoryPath)
 		{
-			var rootDirectoryPath = Path.Combine(wwwrootPath, wwwEntryFolderPath);
-
 			if (!Directory.Exists(rootDirectoryPath))
-				throw new DirectoryNotFoundException();
+				throw new DirectoryNotFoundException(rootDirectoryPath);
 
 			Root = new DirectoryInfo(rootDirectoryPath);
 		}

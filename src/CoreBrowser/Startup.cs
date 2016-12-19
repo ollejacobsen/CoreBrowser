@@ -5,6 +5,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using CoreBrowser.Services;
 using CoreBrowser.Models;
+using Microsoft.Extensions.FileProviders;
 
 namespace CoreBrowser
 {
@@ -12,6 +13,8 @@ namespace CoreBrowser
     {
 		public IConfigurationRoot Configuration { get; }
 		private IHostingEnvironment _hostingEnv;
+
+		private FileSystemConfiguration _fileSystemConfiguration;
 
 		public Startup(IHostingEnvironment env)
         {
@@ -28,12 +31,17 @@ namespace CoreBrowser
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-			//Custom service
-			var conf = new FileSystemConfiguration(_hostingEnv.WebRootPath, Configuration["CoreBrowser:RootFolderInWWWRoot"])
+			var filesRootFolder = Configuration["CoreBrowser:RootFolderInWWWRoot"];
+			if(filesRootFolder.StartsWith(ApplicationConstants.WWWROOT_PLACEHOLDER)) {
+				var removedPlaceholder = filesRootFolder.Remove(0, ApplicationConstants.WWWROOT_PLACEHOLDER.Length);
+				filesRootFolder = $"{_hostingEnv.WebRootPath}{removedPlaceholder}";
+			}
+
+			_fileSystemConfiguration = new FileSystemConfiguration(filesRootFolder)
 				.AddExcludedFileNames("web.config")
 				.Build();
 
-			services.AddTransient<IFileSystemService>(x => new FileSystemService(conf));
+			services.AddTransient<IFileSystemService>(x => new FileSystemService(_fileSystemConfiguration));
 			services.AddTransient<IConfiguration>(x => Configuration);
 			services.AddTransient<ICoreBrowserRazorView, CoreBrowserRazorView>();
 
@@ -59,6 +67,11 @@ namespace CoreBrowser
 			}
 
 			app.UseStaticFiles();
+
+			app.UseFileServer(new FileServerOptions()
+			{
+				FileProvider = new PhysicalFileProvider(_fileSystemConfiguration.Root.FullName)
+			});
 
 			app.UseMvc(routes =>
 			{

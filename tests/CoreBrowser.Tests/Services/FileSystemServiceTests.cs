@@ -15,7 +15,7 @@ namespace CoreBrowser.Tests.Services
 
 		public FileSystemServiceTests()
 		{
-			var conf = new FileSystemConfiguration(AppContext.BaseDirectory, "../../../_files")
+			var conf = new FileSystemConfiguration(Path.Combine(AppContext.BaseDirectory, "../../../_files"))
 				.AddExcludedFileExtensions(_excludedExtensions)
 				.AddExcludedFileNames(_excludedFilenames)
 				.Build();
@@ -97,7 +97,7 @@ namespace CoreBrowser.Tests.Services
         [Fact]
 	    public void GetDirectory_GivenTxtHeaderContent_ReturnsTextFileContent()
 	    {
-            var conf = new FileSystemConfiguration(AppContext.BaseDirectory, "../../../_files")
+            var conf = new FileSystemConfiguration(Path.Combine(AppContext.BaseDirectory, "../../../_files"))
                 .SetDirectoryHeaderFileName("_headerContent.txt")
 				.Build();
 
