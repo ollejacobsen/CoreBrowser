@@ -25,10 +25,30 @@ You can exclude files from the directory listing. Both by extension and a full f
 
 This is done by modifying `Startup.cs` (see Configuration below)
 
+## Appsettings
+In the file appsettings.json there is a CoreBrowser section that you can tweak.
+
+Example:
+```
+	"CoreBrowser": {
+		"FilesRootFolder": "{wwwroot}/files",
+		"GaTrackingUA": "",
+		"TitleSuffix": "CoreBrowser"
+	}
+``` 
+### FilesRootFolder
+Used to set the root folder for the browser. Absolute path on disc or you can use the {wwwroot} placeholder to map a folder in the wwwroot.
+
+### GaTrackingUA
+Used for Google tracking.
+
+### TitleSuffix
+Used to build the `<title>` element.
+
 ## Configuration
 Example:
 ```
-    var conf = new FileSystemConfiguration(_hostingEnv.WebRootPath, Configuration["CoreBrowser:RootFolderInWWWRoot"])
+    var conf = new FileSystemConfiguration(...)
                 .AddExcludedFileNames("web.config")
                 .AddExcludedFileExtensions(".hidden,.secret")
                 .SetDirectoryHeaderFileName("myCustomHeaderFile.md")
