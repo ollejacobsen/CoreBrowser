@@ -31,7 +31,7 @@ namespace CoreBrowser
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-			var filesRootFolder = Configuration["CoreBrowser:RootFolderInWWWRoot"];
+			var filesRootFolder = Configuration["CoreBrowser:FilesRootFolder"];
 			if(filesRootFolder.StartsWith(ApplicationConstants.WWWROOT_PLACEHOLDER)) {
 				var removedPlaceholder = filesRootFolder.Remove(0, ApplicationConstants.WWWROOT_PLACEHOLDER.Length);
 				filesRootFolder = $"{_hostingEnv.WebRootPath}{removedPlaceholder}";

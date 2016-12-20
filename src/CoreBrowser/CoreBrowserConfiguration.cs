@@ -7,7 +7,7 @@ namespace CoreBrowser
 {
     public class CoreBrowserConfiguration
     {
-		public string RootFolderInWWWRoot { get; set; }
+		public string FilesRootFolder { get; set; }
 		public string GaTrackingUA { get; set; }
 		public string TitleSuffix { get; set; }
 	}
