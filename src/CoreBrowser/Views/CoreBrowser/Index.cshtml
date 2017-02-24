@@ -5,7 +5,7 @@
 }
 
 <div class="row">
-	<breadcrumbs path="@Model.Path" root="Home"></breadcrumbs>
+	<breadcrumbs path="@Model.Path" root="Home" helper="@Helper"></breadcrumbs>
 
 	@if (!string.IsNullOrWhiteSpace(Model.HeaderContent))
 	{

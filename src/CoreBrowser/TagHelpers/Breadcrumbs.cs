@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Text;
 using Microsoft.AspNetCore.Razor.TagHelpers;
+using CoreBrowser.Models;
 
 namespace CoreBrowser.TagHelpers
 {
@@ -8,6 +9,7 @@ namespace CoreBrowser.TagHelpers
 	{
 		public string Path { get; set; }
 		public string Root { get; set; }
+		public ICoreBrowserRazorView Helper { get; set; }
 
 		public override void Process(TagHelperContext context, TagHelperOutput output)
 		{
@@ -27,7 +29,7 @@ namespace CoreBrowser.TagHelpers
 
 			for (int i = 0; i < pathAsArray.Length; i++)
 			{
-				var portion = pathAsArray[i];
+				var portion = Helper != null ? Helper.ReplaceTokens(pathAsArray[i]) : pathAsArray[i];
 				var currentPath = lastPath + portion + "/";
 
 				var element = i == pathAsArray.Length - 1 
