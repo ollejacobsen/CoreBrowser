@@ -8,7 +8,7 @@ namespace CoreBrowser.Extensions
 {
     public static class FileModelExtensions
     {
-	    public static string GetFontAwsomeIcon(this FileModel model)
+	    public static string GetFontAwesomeIcon(this FileModel model)
 	    {
 		    switch (model.GetKnownType())
 		    {

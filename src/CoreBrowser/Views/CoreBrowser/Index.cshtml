@@ -49,7 +49,7 @@
 		@foreach (var file in Model.Files)
 		{
 			<tr data-url="@file.Path" data-type="@file.GetKnownType()" title="@($"Filename: {file.Name}\nLast updated: {file.LastWriteTime}")">
-				<td><i class="fa @file.GetFontAwsomeIcon()" aria-hidden="true"></i></td>
+				<td><i class="fa @file.GetFontAwesomeIcon()" aria-hidden="true"></i></td>
 				<td>
 					@if (file.GetKnownType() == "image")
 					{
