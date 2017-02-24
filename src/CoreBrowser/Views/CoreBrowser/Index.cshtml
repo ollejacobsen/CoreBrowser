@@ -40,7 +40,7 @@
 		{
 			<tr data-url="@dir.Path" data-type="folder" title="@($"Last updated: {dir.LastWriteTime}")">
 				<td><i class="fa fa-folder" aria-hidden="true"></i></td>
-				<td><a href="@dir.Path">@dir.Name</a></td>
+				<td><a href="@dir.Path">@Helper.ReplaceTokens(dir.Name)</a></td>
 				<td data-sort-value="@dir.LastWriteTime.Ticks">@dir.LastWriteTime.ToString("yyyy-MM-dd HH:mm")</td>
 				<td></td>
 				<td data-sort-value="0"></td>
@@ -53,11 +53,11 @@
 				<td>
 					@if (file.GetKnownType() == "image")
 					{
-						<a data-toggle="lightbox" data-gallery="galleryname" href="@file.Path">@file.NameWithoutExtension</a>
+						<a data-toggle="lightbox" data-gallery="galleryname" href="@file.Path">@Helper.ReplaceTokens(file.NameWithoutExtension)</a>
 					}
 					else
 					{
-						<a href="@file.Path">@file.NameWithoutExtension</a>
+						<a href="@file.Path">@Helper.ReplaceTokens(file.NameWithoutExtension)</a>
 					}
 				</td>
 				<td data-sort-value="@file.LastWriteTime.Ticks">@file.LastWriteTime.ToString("yyyy-MM-dd HH:mm")</td>
