@@ -30,7 +30,7 @@ namespace CoreBrowser.TagHelpers
 			for (int i = 0; i < pathAsArray.Length; i++)
 			{
 				var portion = Helper != null ? Helper.ReplaceTokens(pathAsArray[i]) : pathAsArray[i];
-				var currentPath = lastPath + portion + "/";
+				var currentPath = lastPath + pathAsArray[i] + "/";
 
 				var element = i == pathAsArray.Length - 1 
 					? $"<li class=\"active\">{portion}</li>" 
