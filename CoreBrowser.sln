@@ -1,24 +1,24 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.26430.16
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{F72F134D-B079-499A-8B89-ADAE2A78A68E}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{1DB0972D-B7B2-4DAB-817E-90A762784254}"
 	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
 		.travis.yml = .travis.yml
 		appveyor.yml = appveyor.yml
-		global.json = global.json
 		LICENSE = LICENSE
 		README.md = README.md
 	EndProjectSection
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "CoreBrowser", "src\CoreBrowser\CoreBrowser.xproj", "{8ABD64BB-9914-45BA-A79E-C1121B03C2CA}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{65A2FF2C-AD7D-4426-B743-BCB2DC635A66}"
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "CoreBrowser.Tests", "tests\CoreBrowser.Tests\CoreBrowser.Tests.xproj", "{80A35C64-7E63-45D5-955D-B83185A9C9BB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoreBrowser", "src\CoreBrowser\CoreBrowser.csproj", "{8ABD64BB-9914-45BA-A79E-C1121B03C2CA}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoreBrowser.Tests", "tests\CoreBrowser.Tests\CoreBrowser.Tests.csproj", "{80A35C64-7E63-45D5-955D-B83185A9C9BB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
