@@ -6,4 +6,4 @@ build:
   project: CoreBrowser.sln
   verbosity: minimal
 test_script:
-- ps: dotnet test c:\projects\corebrowser\tests\CoreBrowser.Tests 
+- ps: dotnet test c:\projects\corebrowser\tests\CoreBrowser.Tests\CoreBrowser.Tests.csproj
