@@ -1,5 +1,5 @@
 language: csharp
-dotnet: 1.0.0-preview2-003121
+dotnet: 1.0.4
 mono: none
 sudo: required
 dist: trusty
@@ -7,4 +7,4 @@ os:
   - linux
 script:
   - dotnet restore
-  - dotnet test ./tests/CoreBrowser.Tests/
+  - dotnet test ./tests/CoreBrowser.Tests/CoreBrowser.Tests.csproj
