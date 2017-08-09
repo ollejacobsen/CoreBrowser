@@ -15,8 +15,11 @@ namespace CoreBrowser.Models
 		private FileSize _totalSizeOfAllFiles;
 		public FileSize TotalSizeOfAllFiles
 		{
-			get { return _totalSizeOfAllFiles 
-					?? (_totalSizeOfAllFiles = new FileSize(Files.Sum(x => x.Size.Length))); }
+			get
+			{
+				return _totalSizeOfAllFiles
+				  ?? (_totalSizeOfAllFiles = new FileSize(Files.Sum(x => x.Size.Length)));
+			}
 		}
 
 		public string HeaderContent { get; set; }
@@ -25,7 +28,7 @@ namespace CoreBrowser.Models
 
 		public IReadOnlyList<DirectoryModel> DirectoryTree { get; set; }
 
-		public CurrentDirectoryModel(DirectoryInfo directory, string path) 
+		public CurrentDirectoryModel(DirectoryInfo directory, string path)
 			: base(directory, path)
 		{
 

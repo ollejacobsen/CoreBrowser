@@ -1,19 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace CoreBrowser.Helpers
 {
-    public class MimeTypes
-    {
+	public class MimeTypes
+	{
 		private static IDictionary<string, string> _mappings = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase) {
 
-        #region Big freaking list of mime types
-        // combination of values from Windows 7 Registry and 
-        // from C:\Windows\System32\inetsrv\config\applicationHost.config
-        // some added, including .7z and .dat
-        {".323", "text/h323"},
+		#region Big freaking list of mime types
+		// combination of values from Windows 7 Registry and 
+		// from C:\Windows\System32\inetsrv\config\applicationHost.config
+		// some added, including .7z and .dat
+		{".323", "text/h323"},
 		{".3g2", "video/3gpp2"},
 		{".3gp", "video/3gpp"},
 		{".3gp2", "video/3gpp2"},
@@ -573,9 +571,9 @@ namespace CoreBrowser.Helpers
 		{".xwd", "image/x-xwindowdump"},
 		{".z", "application/x-compress"},
 		{".zip", "application/x-zip-compressed"},
-        #endregion
+		#endregion
 
-        };
+		};
 
 		public static string GetMimeType(string extension)
 		{

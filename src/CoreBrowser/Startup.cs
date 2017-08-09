@@ -9,30 +9,31 @@ using Microsoft.Extensions.FileProviders;
 
 namespace CoreBrowser
 {
-    public class Startup
-    {
+	public class Startup
+	{
 		public IConfigurationRoot Configuration { get; }
 		private IHostingEnvironment _hostingEnv;
 
 		private FileSystemConfiguration _fileSystemConfiguration;
 
 		public Startup(IHostingEnvironment env)
-        {
-            var builder = new ConfigurationBuilder()
-                .SetBasePath(env.ContentRootPath)
-                .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
-                .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
-                .AddEnvironmentVariables();
+		{
+			var builder = new ConfigurationBuilder()
+				.SetBasePath(env.ContentRootPath)
+				.AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
+				.AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
+				.AddEnvironmentVariables();
 
 			Configuration = builder.Build();
 			_hostingEnv = env;
-        }
+		}
 
-        // This method gets called by the runtime. Use this method to add services to the container.
-        public void ConfigureServices(IServiceCollection services)
-        {
+		// This method gets called by the runtime. Use this method to add services to the container.
+		public void ConfigureServices(IServiceCollection services)
+		{
 			var filesRootFolder = Configuration["CoreBrowser:FilesRootFolder"];
-			if(filesRootFolder.StartsWith(ApplicationConstants.WWWROOT_PLACEHOLDER)) {
+			if (filesRootFolder.StartsWith(ApplicationConstants.WWWROOT_PLACEHOLDER))
+			{
 				var removedPlaceholder = filesRootFolder.Remove(0, ApplicationConstants.WWWROOT_PLACEHOLDER.Length);
 				filesRootFolder = $"{_hostingEnv.WebRootPath}{removedPlaceholder}";
 			}
@@ -51,18 +52,18 @@ namespace CoreBrowser
 			services.Configure<CoreBrowserConfiguration>(Configuration.GetSection("CoreBrowser"));
 		}
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
-        {
-            loggerFactory.AddConsole(Configuration.GetSection("Logging"));
-            loggerFactory.AddDebug();
+		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+		public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
+		{
+			loggerFactory.AddConsole(Configuration.GetSection("Logging"));
+			loggerFactory.AddDebug();
 
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-            }
-            else
-            {
+			if (env.IsDevelopment())
+			{
+				app.UseDeveloperExceptionPage();
+			}
+			else
+			{
 				app.UseExceptionHandler("/CoreBrowser/Error");
 			}
 
@@ -86,5 +87,5 @@ namespace CoreBrowser
 					defaults: new { controller = "CoreBrowser", action = "Index" });
 			});
 		}
-    }
+	}
 }

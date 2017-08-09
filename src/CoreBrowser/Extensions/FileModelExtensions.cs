@@ -1,21 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using CoreBrowser.Models;
+﻿using CoreBrowser.Models;
 
 namespace CoreBrowser.Extensions
 {
-    public static class FileModelExtensions
-    {
-	    public static string GetFontAwesomeIcon(this FileModel model)
-	    {
-		    switch (model.GetKnownType())
-		    {
+	public static class FileModelExtensions
+	{
+		public static string GetFontAwesomeIcon(this FileModel model)
+		{
+			switch (model.GetKnownType())
+			{
 				case "image":
 					return "fa-picture-o";
 				case "text":
-				    return "fa-file-text-o";
+					return "fa-file-text-o";
 				case "pdf":
 					return "fa-file-pdf-o";
 				case "word":
@@ -25,20 +21,20 @@ namespace CoreBrowser.Extensions
 				case "powerpoint":
 					return "fa-file-powerpoint-o";
 				case "archive":
-				    return "fa-file-archive-o";
+					return "fa-file-archive-o";
 				case "code":
-				    return "fa-file-code-o";
+					return "fa-file-code-o";
 				case "video":
-				    return "fa-file-video-o";
+					return "fa-file-video-o";
 				case "audio":
-				    return "fa-file-audio-o";
+					return "fa-file-audio-o";
 				default:
-				    return "fa-file-o";
-		    }
-	    }
+					return "fa-file-o";
+			}
+		}
 
-	    public static string GetKnownType(this FileModel model)
-	    {
+		public static string GetKnownType(this FileModel model)
+		{
 			switch (model.Extension.ToLower())
 			{
 				case ".jpg":
@@ -87,5 +83,5 @@ namespace CoreBrowser.Extensions
 					return "file";
 			}
 		}
-    }
+	}
 }

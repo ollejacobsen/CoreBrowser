@@ -27,7 +27,7 @@ namespace CoreBrowser.Models
 		{
 			get
 			{
-				if(_charactersWhitespaceTokens == null)
+				if (_charactersWhitespaceTokens == null)
 				{
 					if (string.IsNullOrWhiteSpace(_configuration.CharactersWhitespaceTokens))
 					{

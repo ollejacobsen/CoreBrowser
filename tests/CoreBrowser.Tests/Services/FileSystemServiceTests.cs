@@ -6,10 +6,10 @@ using Xunit;
 
 namespace CoreBrowser.Tests.Services
 {
-    public class FileSystemServiceTests
-    {
+	public class FileSystemServiceTests
+	{
 		private readonly IFileSystemService _fileService;
-	    private readonly FileSystemConfiguration _configuration;
+		private readonly FileSystemConfiguration _configuration;
 		private const string _excludedExtensions = ".hidden,.secret";
 		private const string _excludedFilenames = "web.config";
 
@@ -55,7 +55,7 @@ namespace CoreBrowser.Tests.Services
 			var contents = _fileService.GetDirectory();
 			var excludedExtensionsArray = _excludedExtensions.Split(',');
 
-			Assert.False(contents.Files.Any(x => 
+			Assert.False(contents.Files.Any(x =>
 				excludedExtensionsArray.Contains(string.Concat(".", x.Extension))));
 		}
 
@@ -85,29 +85,29 @@ namespace CoreBrowser.Tests.Services
 			Assert.Equal("1MB", file.Size.ToPrettySize());
 		}
 
-	    [Fact]
-	    public void GetDirectory_HeaderContent_ReturnsMarkdownFileAsHtml()
-	    {
-		    var contents = _fileService.GetDirectory();
-		    var header = contents.HeaderContent;
+		[Fact]
+		public void GetDirectory_HeaderContent_ReturnsMarkdownFileAsHtml()
+		{
+			var contents = _fileService.GetDirectory();
+			var header = contents.HeaderContent;
 
-		    Assert.Equal("<h1>Title</h1>", header);
-	    }
-        
-        [Fact]
-	    public void GetDirectory_GivenTxtHeaderContent_ReturnsTextFileContent()
-	    {
-            var conf = new FileSystemConfiguration(Path.Combine(AppContext.BaseDirectory, "../../../_files"))
-                .SetDirectoryHeaderFileName("_headerContent.txt")
+			Assert.Equal("<h1>Title</h1>", header);
+		}
+
+		[Fact]
+		public void GetDirectory_GivenTxtHeaderContent_ReturnsTextFileContent()
+		{
+			var conf = new FileSystemConfiguration(Path.Combine(AppContext.BaseDirectory, "../../../_files"))
+				.SetDirectoryHeaderFileName("_headerContent.txt")
 				.Build();
 
 			var fileService = new FileSystemService(conf);
-            
-		    var contents = fileService.GetDirectory();
-		    var header = contents.HeaderContent;
 
-		    Assert.Equal("Title", header);
-	    }
+			var contents = fileService.GetDirectory();
+			var header = contents.HeaderContent;
+
+			Assert.Equal("Title", header);
+		}
 
 		[Theory]
 		[InlineData("kilobyte.fake")]
@@ -161,15 +161,15 @@ namespace CoreBrowser.Tests.Services
 			Assert.False(_fileService.IsAvailable(path));
 		}
 
-	    [Theory]
-	    [InlineData("", "/")]
+		[Theory]
+		[InlineData("", "/")]
 		[InlineData("level-one", "/level-one")]
 		[InlineData("..", "/..")]
 		public void GetAbsoluteVirtualPath(string path, string expectedVirtualPath)
-	    {
-		    var fullFilesystemPath = Path.Combine(_configuration.Root.FullName, path);
+		{
+			var fullFilesystemPath = Path.Combine(_configuration.Root.FullName, path);
 
 			Assert.Equal(expectedVirtualPath, _fileService.GetAbsoluteVirtualPath(fullFilesystemPath));
-	    }
+		}
 	}
 }

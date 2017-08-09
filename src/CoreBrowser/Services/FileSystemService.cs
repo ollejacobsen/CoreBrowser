@@ -55,7 +55,7 @@ namespace CoreBrowser.Services
 					? null : new DirectoryModel(contents.Item1.Parent, GetAbsoluteVirtualPath(contents.Item1.Parent.FullName)),
 				DirectoryTree = null,
 				HeaderContent = GetHeaderContent(contents.Item1, _conf.CurrentHeaderFile)
-				                ?? string.Empty,
+								?? string.Empty,
 				Directories = contents.Item2 != null
 					? contents.Item2.Select(x => DirectoryModel.Map(x, GetAbsoluteVirtualPath(x.FullName))).ToList()
 					: new List<DirectoryModel>(),
@@ -132,7 +132,7 @@ namespace CoreBrowser.Services
 					return false;
 
 				var fileIsExcluded = _conf.ExcludedFileNames.Contains(file.Name, StringComparer.OrdinalIgnoreCase)
-				                        || _conf.ExcludedFileExtension.Contains(file.Extension, StringComparer.OrdinalIgnoreCase);
+										|| _conf.ExcludedFileExtension.Contains(file.Extension, StringComparer.OrdinalIgnoreCase);
 
 				return !fileIsExcluded;
 			}
@@ -177,12 +177,12 @@ namespace CoreBrowser.Services
 		private string GetFileContent(FileInfo file)
 		{
 			var content = string.Empty;
-            
-            // using(var stream = file.OpenRead())
-            // using (var streamReader = new StreamReader(stream))
-            // {
-            //     content = streamReader.ReadToEnd();
-            // }
+			
+			// using(var stream = file.OpenRead())
+			// using (var streamReader = new StreamReader(stream))
+			// {
+			//     content = streamReader.ReadToEnd();
+			// }
 
 			using (var r = file.OpenText())
 			{
@@ -209,7 +209,7 @@ namespace CoreBrowser.Services
 				return "/";
 
 			fullFilesystemPath = fullFilesystemPath.Replace(_conf.Root.FullName, "")
-                .Replace(@"\\", @"\");
+				.Replace(@"\\", @"\");
 			var virtualPath = fullFilesystemPath.Replace(Path.DirectorySeparatorChar, '/');
 
 			return virtualPath.StartsWith("/") 

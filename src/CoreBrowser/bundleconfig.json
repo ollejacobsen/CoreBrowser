@@ -2,8 +2,8 @@
 // More info at https://go.microsoft.com/fwlink/?LinkId=808241
 [
   {
-    "outputFileName": "wwwroot/css/site.min.css",
-    // An array of relative input file paths. Globbing patterns supported
+	"outputFileName": "wwwroot/css/site.min.css",
+	// An array of relative input file paths. Globbing patterns supported
 			"inputFiles": [
 				"wwwroot/css/site.css",
 				"wwwroot/css/ekko-lightbox.css",
@@ -11,18 +11,18 @@
 			]
   },
   {
-    "outputFileName": "wwwroot/js/site.min.js",
+	"outputFileName": "wwwroot/js/site.min.js",
 			"inputFiles": [
 				"wwwroot/js/site.js",
 				"wwwroot/js/ekko-lightbox.js",
 				"wwwroot/js/stupidtable.js"
 			],
-    // Optionally specify minification options
-    "minify": {
-      "enabled": true,
-      "renameLocals": true
-    },
-    // Optinally generate .map file
-    "sourceMap": false
+	// Optionally specify minification options
+	"minify": {
+	  "enabled": true,
+	  "renameLocals": true
+	},
+	// Optinally generate .map file
+	"sourceMap": false
   }
 ]
