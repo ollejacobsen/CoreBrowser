@@ -12,6 +12,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Properties\PublishProfiles\CoreBrowser20161026075844 - Web Deploy.pubxml" />
     <None Remove="Properties\PublishProfiles\Default Settings.pubxml" />
   </ItemGroup>
 
