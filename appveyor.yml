@@ -1,9 +1,9 @@
 version: 1.0.{build}
+image: Visual Studio 2017
 cache: C:\Users\appveyor\.nuget\
 before_build:
 - cmd: dotnet restore
-build:
-  project: CoreBrowser.sln
-  verbosity: minimal
+build_script:
+- ps: dotnet build c:\projects\corebrowser\CoreBrowser.sln
 test_script:
 - ps: dotnet test c:\projects\corebrowser\tests\CoreBrowser.Tests\CoreBrowser.Tests.csproj
