@@ -27,7 +27,7 @@ namespace CoreBrowser.Services
 			_conf = configuration;
 		}
 
-		public Tuple<DirectoryInfo, DirectoryInfo[], FileInfo[]> GetDirectoryContent(string absoluteVirtualPath)
+		public (DirectoryInfo Directory, DirectoryInfo[] SubDirs, FileInfo[] Files) GetDirectoryContent(string absoluteVirtualPath)
 		{
 			var activePath = MapPath(absoluteVirtualPath);
 			var currentDirectory = new DirectoryInfo(activePath);
@@ -42,25 +42,25 @@ namespace CoreBrowser.Services
 				.OrderBy(x => x.Name)
 				.ToArray();
 
-			return Tuple.Create(currentDirectory, subDirs, files);
+			return (currentDirectory, subDirs, files);
 		}
 		
 		public CurrentDirectoryModel GetDirectory(string absoluteVirtualPath = null)
 		{
 			var contents = GetDirectoryContent(absoluteVirtualPath);
 
-			var model = new CurrentDirectoryModel(contents.Item1, absoluteVirtualPath)
+			var model = new CurrentDirectoryModel(contents.Directory, absoluteVirtualPath)
 			{
-				Parent = contents.Item1.FullName.Equals(_conf.Root.FullName) 
-					? null : new DirectoryModel(contents.Item1.Parent, GetAbsoluteVirtualPath(contents.Item1.Parent.FullName)),
+				Parent = contents.Directory.FullName.Equals(_conf.Root.FullName) 
+					? null : new DirectoryModel(contents.Directory.Parent, GetAbsoluteVirtualPath(contents.Directory.Parent.FullName)),
 				DirectoryTree = null,
-				HeaderContent = GetHeaderContent(contents.Item1, _conf.CurrentHeaderFile)
+				HeaderContent = GetHeaderContent(contents.Directory, _conf.CurrentHeaderFile)
 								?? string.Empty,
-				Directories = contents.Item2 != null
-					? contents.Item2.Select(x => DirectoryModel.Map(x, GetAbsoluteVirtualPath(x.FullName))).ToList()
+				Directories = contents.SubDirs != null
+					? contents.SubDirs.Select(x => DirectoryModel.Map(x, GetAbsoluteVirtualPath(x.FullName))).ToList()
 					: new List<DirectoryModel>(),
-				Files = contents.Item3 != null
-					? contents.Item3.Select(x => FileModel.Map(x, GetAbsoluteVirtualPath(x.FullName))).ToList()
+				Files = contents.Files != null
+					? contents.Files.Select(x => FileModel.Map(x, GetAbsoluteVirtualPath(x.FullName))).ToList()
 					: new List<FileModel>()
 			};
 
@@ -177,12 +177,6 @@ namespace CoreBrowser.Services
 		private string GetFileContent(FileInfo file)
 		{
 			var content = string.Empty;
-			
-			// using(var stream = file.OpenRead())
-			// using (var streamReader = new StreamReader(stream))
-			// {
-			//     content = streamReader.ReadToEnd();
-			// }
 
 			using (var r = file.OpenText())
 			{

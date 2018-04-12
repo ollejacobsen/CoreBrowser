@@ -10,8 +10,8 @@ namespace CoreBrowser.Tests.Services
 	{
 		private readonly IFileSystemService _fileService;
 		private readonly FileSystemConfiguration _configuration;
-		private const string _excludedExtensions = ".hidden,.secret";
-		private const string _excludedFilenames = "web.config";
+		private readonly string[] _excludedExtensions = new [] { ".hidden", ".secret" };
+		private readonly string[] _excludedFilenames = new[] { "web.config" };
 
 		public FileSystemServiceTests()
 		{
@@ -53,18 +53,17 @@ namespace CoreBrowser.Tests.Services
 		public void GetDirectory_GivenRoot_ReturnNoSecretExtensions()
 		{
 			var contents = _fileService.GetDirectory();
-			var excludedExtensionsArray = _excludedExtensions.Split(',');
 
-			Assert.False(contents.Files.Any(x =>
-				excludedExtensionsArray.Contains(string.Concat(".", x.Extension))));
+			Assert.DoesNotContain(contents.Files, x =>
+				_excludedExtensions.Contains(string.Concat(".", x.Extension)));
 		}
 
 		[Fact]
 		public void GetDirectory_GivenRoot_ReturnNoHiddenFiles()
 		{
 			var contents = _fileService.GetDirectory();
-			Assert.False(contents.Files.Any(x => x.Name == "web.config"));
-			Assert.False(contents.Files.Any(x => x.Name == "_headerContent.md"));
+			Assert.DoesNotContain(contents.Files, x => x.Name == "web.config");
+			Assert.DoesNotContain(contents.Files, x => x.Name == "_headerContent.md");
 		}
 
 		[Fact]
@@ -170,6 +169,13 @@ namespace CoreBrowser.Tests.Services
 			var fullFilesystemPath = Path.Combine(_configuration.Root.FullName, path);
 
 			Assert.Equal(expectedVirtualPath, _fileService.GetAbsoluteVirtualPath(fullFilesystemPath));
+		}
+
+		[Theory]
+		[InlineData("")]
+		public void Find(string pattern)
+		{
+			var result = _fileService.Find(pattern);
 		}
 	}
 }

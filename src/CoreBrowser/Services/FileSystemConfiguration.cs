@@ -6,10 +6,8 @@ namespace CoreBrowser.Services
 {
 	public interface IFileSystemConfiguration
 	{
-		IFileSystemConfiguration AddExcludedFileExtensions(string extensions);
-		IFileSystemConfiguration AddExcludedFileExtensions(params string[] extensions);
-		IFileSystemConfiguration AddExcludedFileNames(string filenames);
-		IFileSystemConfiguration AddExcludedFileNames(params string[] filenames);
+		IFileSystemConfiguration AddExcludedFileExtensions(string[] extensions);
+		IFileSystemConfiguration AddExcludedFileNames(string[] filenames);
 		IFileSystemConfiguration SetDirectoryHeaderFileName(string name);
 
 		FileSystemConfiguration Build();
@@ -20,11 +18,9 @@ namespace CoreBrowser.Services
 		public DirectoryInfo Root { get; private set; }
 
 		public string CurrentHeaderFile = "_headerContent.md";
+		public List<string> ExcludedFileExtension { get; } = new List<string>();
 
-		private List<string> _excludedFileExtension = new List<string>();
-		public List<string> ExcludedFileExtension { get { return _excludedFileExtension; } }
-
-		private List<string> _excludedFileNames = new List<string>();
+		private List<string> _excludedFileNames = new List<string>() { "web.config" };
 		public List<string> ExcludedFileNames
 		{
 			get
@@ -44,51 +40,32 @@ namespace CoreBrowser.Services
 			Root = new DirectoryInfo(rootDirectoryPath);
 		}
 
-		public IFileSystemConfiguration AddExcludedFileExtensions(string extensions)
+		public IFileSystemConfiguration AddExcludedFileExtensions(string[] extensions)
 		{
-			if (!string.IsNullOrWhiteSpace(extensions))
+			if (extensions != null && extensions.Length > 0)
 			{
-				var extensionsArray = extensions.ToLowerInvariant()
-						.Split(new string[] { ",", ";" }, StringSplitOptions.RemoveEmptyEntries);
-
-				_excludedFileExtension.AddRange(extensionsArray);
+				ExcludedFileExtension.AddRange(extensions);
 			}
 
 			return this;
 		}
 
-		public IFileSystemConfiguration AddExcludedFileExtensions(params string[] extensions)
+		public IFileSystemConfiguration AddExcludedFileNames(string[] filenames)
 		{
-			if (extensions.Length > 0)
-				_excludedFileExtension.AddRange(extensions);
-
-			return this;
-		}
-
-		public IFileSystemConfiguration AddExcludedFileNames(string filenames)
-		{
-			if (!string.IsNullOrWhiteSpace(filenames))
+			if (filenames != null && filenames.Length > 0)
 			{
-				var filenamesArray = filenames.ToLowerInvariant()
-						.Split(new string[] { ",", ";" }, StringSplitOptions.RemoveEmptyEntries);
-
-				_excludedFileNames.AddRange(filenamesArray);
+				ExcludedFileExtension.AddRange(filenames);
 			}
-
-			return this;
-		}
-
-		public IFileSystemConfiguration AddExcludedFileNames(params string[] filenames)
-		{
-			if (filenames.Length > 0)
-				_excludedFileExtension.AddRange(filenames);
 
 			return this;
 		}
 
 		public IFileSystemConfiguration SetDirectoryHeaderFileName(string name)
 		{
-			this.CurrentHeaderFile = name;
+			if(name != null && !string.IsNullOrWhiteSpace(name))
+			{
+				this.CurrentHeaderFile = name;
+			}
 
 			return this;
 		}
