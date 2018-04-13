@@ -20,7 +20,7 @@ namespace CoreBrowser.Services
 		public string CurrentHeaderFile = "_headerContent.md";
 		public List<string> ExcludedFileExtension { get; } = new List<string>();
 
-		private List<string> _excludedFileNames = new List<string>() { "web.config" };
+		private List<string> _excludedFileNames = new List<string>();
 		public List<string> ExcludedFileNames
 		{
 			get

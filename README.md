@@ -51,7 +51,6 @@ Used to build the `<title>` element.
 
 ### ExcludedFileExtension
 A way to exclude certain specific extension from the GUI. This will also prevent downloading.
-`web.config` is always excluded.
 
 ### ExcludedFileNames
 A way to exclude certain specific extension from the GUI. This will also prevent downloading.
