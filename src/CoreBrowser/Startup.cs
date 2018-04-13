@@ -72,11 +72,6 @@ namespace CoreBrowser
 
 			app.UseStaticFiles();
 
-			app.UseFileServer(new FileServerOptions()
-			{
-				FileProvider = new PhysicalFileProvider(_fileSystemConfiguration.Root.FullName)
-			});
-
 			app.UseMvc(routes =>
 			{
 				routes.MapRoute(
