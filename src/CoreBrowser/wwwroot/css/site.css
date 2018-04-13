@@ -28,6 +28,19 @@ tr:hover .fa-level-up {
 	padding: 0.5rem;
 }
 
+@media screen and (max-width: 767px) {
+	.top-bar {
+		flex-direction: column;
+	}
+	.top-bar form {
+		display: flex;
+		justify-content: space-between;
+	}
+	.top-bar input {
+		margin-right: 0.5rem;
+	}
+}
+
 .top-bar ol {
 	margin: unset;
 }
