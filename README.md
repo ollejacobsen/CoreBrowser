@@ -33,9 +33,13 @@ Example:
 	"CoreBrowser": {
 		"FilesRootFolder": "{wwwroot}/files",
 		"GaTrackingUA": "",
-		"TitleSuffix": "CoreBrowser"
+		"TitleSuffix": "CoreBrowser",
+		"ExcludedFileExtension": [],
+		"ExcludedFileNames": [],
+		"DirectoryHeaderFileName": ""
 	}
 ``` 
+
 ### FilesRootFolder
 Used to set the root folder for the browser. Absolute path on disc or you can use the {wwwroot} placeholder to map a folder in the wwwroot.
 
@@ -45,17 +49,16 @@ Used for Google tracking.
 ### TitleSuffix
 Used to build the `<title>` element.
 
-## Configuration
-Example:
-```
-    var conf = new FileSystemConfiguration(...)
-                .AddExcludedFileNames("web.config")
-                .AddExcludedFileExtensions(".hidden,.secret")
-                .SetDirectoryHeaderFileName("myCustomHeaderFile.md")
-                .Build();
+### ExcludedFileExtension
+A way to exclude certain specific extension from the GUI. This will also prevent downloading.
+`web.config` is always excluded.
 
-    services.AddTransient<IFileSystemService>(x => new FileSystemService(conf));
-``` 
+### ExcludedFileNames
+A way to exclude certain specific extension from the GUI. This will also prevent downloading.
+The header file below is always excluded.
+
+### DirectoryHeaderFileName
+Name of the file in each dir to render the top content in GUI.
 
 ### Security note
 A user cannot download a file that are hidden from the directory listing. Even though the file path is supplied.
