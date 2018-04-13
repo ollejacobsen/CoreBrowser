@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using CoreBrowser.Helpers;
 using CoreBrowser.Services;
 using Microsoft.Extensions.Options;
+using Microsoft.Extensions.FileProviders;
 
 namespace CoreBrowser.Controllers
 {
@@ -25,6 +26,13 @@ namespace CoreBrowser.Controllers
 
 			var model = _fileService.GetDirectory(url);
 			return View("Index", model);
+		}
+
+		public IActionResult Search(string @for)
+		{
+			var model = _fileService.FindFiles(@for);
+
+			return View("Search", model);
 		}
 
 		private IActionResult ResponseWithFile(string url)

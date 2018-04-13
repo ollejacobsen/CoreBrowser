@@ -4,6 +4,7 @@ using System.Linq;
 using System.IO;
 using MarkdownSharp;
 using CoreBrowser.Models;
+using System.Linq.Expressions;
 
 namespace CoreBrowser.Services
 {
@@ -11,6 +12,7 @@ namespace CoreBrowser.Services
 	{
 		CurrentDirectoryModel GetDirectory(string absoluteVirtualPath = "/");
 		FileInfo GetFileFromFilesystem(string absoluteVirtualPath);
+		SearchResultModel FindFiles(string pattern);
 		bool IsFile(string relativePath);
 		bool IsDirectory(string relativePath);
 		bool IsAvailable(string relativePath);
@@ -21,6 +23,11 @@ namespace CoreBrowser.Services
 	public class FileSystemService : IFileSystemService
 	{
 		private readonly FileSystemConfiguration _conf;
+		private Func<FileInfo, IEnumerable<string>, IEnumerable<string>, bool> FileFilter = (file, exludedNames, exludedExtensions)
+				=> (
+					(exludedExtensions.Contains(file.Extension, StringComparer.OrdinalIgnoreCase) ||
+					exludedNames.Contains(file.Name, StringComparer.OrdinalIgnoreCase)) == false
+				);
 
 		public FileSystemService(FileSystemConfiguration configuration)
 		{
@@ -37,8 +44,7 @@ namespace CoreBrowser.Services
 
 			var subDirs = currentDirectory.GetDirectories().OrderBy(x => x.Name).ToArray();
 			var files = currentDirectory.GetFiles()
-				.Where(x => (_conf.ExcludedFileExtension.Contains(x.Extension, StringComparer.OrdinalIgnoreCase) 
-							|| _conf.ExcludedFileNames.Contains(x.Name, StringComparer.OrdinalIgnoreCase)) == false)
+				.Where(x => FileFilter(x, _conf.ExcludedFileNames, _conf.ExcludedFileExtension))
 				.OrderBy(x => x.Name)
 				.ToArray();
 
@@ -143,6 +149,26 @@ namespace CoreBrowser.Services
 			return false;
 		}
 
+		public SearchResultModel FindFiles(string pattern)
+		{
+			var searchPattern = CreateSearchPattern(pattern);
+		
+			var foundFiles = new DirectoryInfo(_conf.Root.FullName)
+				.GetFiles(searchPattern, SearchOption.AllDirectories)
+				.Where(x => FileFilter(x, _conf.ExcludedFileNames, _conf.ExcludedFileExtension))
+				.OrderBy(x => x.Name)
+				.ToArray();
+
+			var model = new SearchResultModel()
+			{
+				SearchTerm = pattern,
+				Files = foundFiles.Select(x =>
+					FileModel.Map(x, GetAbsoluteVirtualPath(x.FullName))).ToList()
+			};
+
+			return model;
+		}
+
 		private string GetHeaderContent(DirectoryInfo dir, string filename)
 		{
 			if (dir == null || string.IsNullOrWhiteSpace(filename))
@@ -221,6 +247,20 @@ namespace CoreBrowser.Services
 
 			virtualPath = virtualPath.Replace('/', Path.DirectorySeparatorChar);
 			return Path.Combine(_conf.Root.FullName, virtualPath);
+		}
+
+		internal string CreateSearchPattern(string pattern)
+		{
+			if (string.IsNullOrWhiteSpace(pattern))
+				return pattern;
+
+			var searchPattern = pattern;
+			if (!pattern.StartsWith("*"))
+				searchPattern = $"*{searchPattern}";
+			if(!pattern.EndsWith("*"))
+				searchPattern = $"{searchPattern}*";
+
+			return searchPattern;
 		}
 	}
 }

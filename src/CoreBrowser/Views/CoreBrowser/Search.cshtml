@@ -1,0 +1,53 @@
+﻿@using CoreBrowser.Extensions
+@model CoreBrowser.Models.SearchResultModel
+@{
+	ViewData["Title"] = $"Search for {Model.SearchTerm}";
+}
+
+<div class="row">
+	<div class="top-bar">
+		<breadcrumbs path="Search" root="Home" helper="@Helper"></breadcrumbs>
+		<form class="form-inline" action="/search" method="get">
+			<input type="text" class="form-control" name="for" />
+			<button type="submit" class="btn btn-default">Search</button>
+		</form>
+	</div>
+
+	<div id="header-content">
+		<h1>@Model.SearchTerm</h1>
+		<small>gave @Model.NrOfFiles results</small>
+	</div>
+
+	<table class="table table-hover sortable">
+		<thead>
+			<tr>
+				<th class="col-sm-1"></th>
+				<th data-sort="string">Name <span class="sort-arrows sort-arrows-dark"><span class="up"></span><span class="down"></span></span></th>
+				<th class="col-sm-2" data-sort="int">Last modified <span class="sort-arrows sort-arrows-dark"><span class="up"></span><span class="down"></span></span></th>
+				<th class="col-sm-1" data-sort="string">Ext. <span class="sort-arrows sort-arrows-dark"><span class="up"></span><span class="down"></span></span></th>
+				<th class="col-sm-1" data-sort="int">Size <span class="sort-arrows sort-arrows-dark"><span class="up"></span><span class="down"></span></span></th>
+			</tr>
+		</thead>
+		<tbody>
+			@foreach (var file in Model.Files)
+			{
+				<tr data-url="@file.Path" data-type="@file.GetKnownType()" title="@($"Filename: {file.Name}\nLast updated: {file.LastWriteTime}")">
+					<td><i class="fa @file.GetFontAwesomeIcon()" aria-hidden="true"></i></td>
+					<td>
+						@if (file.GetKnownType() == "image")
+						{
+							<a data-toggle="lightbox" data-gallery="galleryname" href="@file.Path">@Helper.ReplaceTokens(file.NameWithoutExtension)</a>
+						}
+						else
+						{
+							<a href="@file.Path">@Helper.ReplaceTokens(file.NameWithoutExtension)</a>
+						}
+					</td>
+					<td data-sort-value="@file.LastWriteTime.Ticks">@file.LastWriteTime.ToString("yyyy-MM-dd HH:mm")</td>
+					<td>@file.Extension.ToLower()</td>
+					<td data-sort-value="@file.Size.Length">@file.Size.ToPrettySize(1)</td>
+				</tr>
+			}
+		</tbody>
+	</table>
+</div>

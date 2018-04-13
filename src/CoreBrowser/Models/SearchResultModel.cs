@@ -1,12 +1,10 @@
 ﻿using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 
 namespace CoreBrowser.Models
 {
-	public class CurrentDirectoryModel : DirectoryModel
+	public class SearchResultModel
 	{
-		public IReadOnlyList<DirectoryModel> Directories { get; set; }
 		public IReadOnlyList<FileModel> Files { get; set; }
 
 		public int NrOfFiles => Files.Count;
@@ -21,16 +19,6 @@ namespace CoreBrowser.Models
 			}
 		}
 
-		public string HeaderContent { get; set; }
-
-		public DirectoryModel Parent { get; set; }
-
-		public IReadOnlyList<DirectoryModel> DirectoryTree { get; set; }
-
-		public CurrentDirectoryModel(DirectoryInfo directory, string path)
-			: base(directory, path)
-		{
-
-		}
+		public string SearchTerm { get; set; }
 	}
 }

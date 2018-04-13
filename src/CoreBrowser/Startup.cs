@@ -86,6 +86,11 @@ namespace CoreBrowser
 					defaults: new { controller = "CoreBrowser", action = "Error" });
 
 				routes.MapRoute(
+					name: "search",
+					template: "search",
+					defaults: new { controller = "CoreBrowser", action = "Search" });
+
+				routes.MapRoute(
 					name: "default",
 					template: "{*url}",
 					defaults: new { controller = "CoreBrowser", action = "Index" });
