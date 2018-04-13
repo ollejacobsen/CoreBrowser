@@ -5,7 +5,6 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using CoreBrowser.Services;
 using CoreBrowser.Models;
-using Microsoft.Extensions.FileProviders;
 
 namespace CoreBrowser
 {

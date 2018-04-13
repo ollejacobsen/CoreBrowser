@@ -4,7 +4,6 @@ using Microsoft.AspNetCore.Mvc;
 using CoreBrowser.Helpers;
 using CoreBrowser.Services;
 using Microsoft.Extensions.Options;
-using Microsoft.Extensions.FileProviders;
 
 namespace CoreBrowser.Controllers
 {
