@@ -54,7 +54,7 @@ namespace CoreBrowser.Services
 		{
 			if (filenames != null && filenames.Length > 0)
 			{
-				ExcludedFileExtension.AddRange(filenames);
+				ExcludedFileNames.AddRange(filenames);
 			}
 
 			return this;
