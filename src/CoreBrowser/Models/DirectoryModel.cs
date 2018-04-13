@@ -11,7 +11,6 @@ namespace CoreBrowser.Models
 
 		public string Path { get; private set; }
 
-
 		public DirectoryModel(DirectoryInfo directory, string path)
 		{
 			this.Name = directory.Name;
