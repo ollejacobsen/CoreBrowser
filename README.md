@@ -34,7 +34,7 @@ Example:
 		"FilesRootFolder": "{wwwroot}/files",
 		"GaTrackingUA": "",
 		"TitleSuffix": "CoreBrowser",
-		"ExcludedFileExtension": [],
+		"ExcludedFileExtensions": [],
 		"ExcludedFileNames": [],
 		"DirectoryHeaderFileName": ""
 	}

@@ -42,7 +42,7 @@ namespace CoreBrowser
 
 			_fileSystemConfiguration = new FileSystemConfiguration(filesRootFolder)
 				.AddExcludedFileNames(conf.ExcludedFileNames)
-				.AddExcludedFileExtensions(conf.ExcludedFileExtension)
+				.AddExcludedFileExtensions(conf.ExcludedFileExtensions)
 				.SetDirectoryHeaderFileName(conf.DirectoryHeaderFileName)
 				.Build();
 
