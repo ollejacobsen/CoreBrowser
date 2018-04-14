@@ -150,10 +150,10 @@ namespace CoreBrowser.Services
 
 		public SearchResultModel FindFiles(string pattern)
 		{
-			var searchPattern = CreateSearchPattern(pattern);
-		
+			// Get all files with "*" and then match with Where. This is because we want case insensitive searches even on Linux.
 			var foundFiles = new DirectoryInfo(_conf.Root.FullName)
-				.GetFiles(searchPattern, SearchOption.AllDirectories)
+				.GetFiles("*", SearchOption.AllDirectories)
+				.Where(x => x.Name.ToLowerInvariant().Contains(pattern))
 				.Where(x => FileFilter(x, _conf.ExcludedFileNames, _conf.ExcludedFileExtension))
 				.OrderBy(x => x.Name)
 				.ToArray();

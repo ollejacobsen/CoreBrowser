@@ -219,19 +219,9 @@ namespace CoreBrowser.Tests.Services
 		}
 
 		[Theory]
-		[InlineData("*unique.jpg")]
-		[InlineData("*lvl-2.png")]
-		public void FindFiles_should_find_on_wildcard(string pattern)
-		{
-			var result = _fileService.FindFiles(pattern);
-
-			Assert.Equal(1, result.NrOfFiles);
-		}
-
-		[Theory]
-		[InlineData("unique.jpg")]
-		[InlineData("lvl-2.png")]
-		public void FindFiles_should_find_on_implicit_wildcard(string pattern)
+		[InlineData("uniq")]
+		[InlineData("lvl-2.pn")]
+		public void FindFiles_should_find_on_incomplete_phrases(string pattern)
 		{
 			var result = _fileService.FindFiles(pattern);
 
