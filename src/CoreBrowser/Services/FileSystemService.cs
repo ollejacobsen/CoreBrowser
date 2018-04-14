@@ -247,19 +247,5 @@ namespace CoreBrowser.Services
 			virtualPath = virtualPath.Replace('/', Path.DirectorySeparatorChar);
 			return Path.Combine(_conf.Root.FullName, virtualPath);
 		}
-
-		internal string CreateSearchPattern(string pattern)
-		{
-			if (string.IsNullOrWhiteSpace(pattern))
-				return pattern;
-
-			var searchPattern = pattern;
-			if (!pattern.StartsWith("*"))
-				searchPattern = $"*{searchPattern}";
-			if(!pattern.EndsWith("*"))
-				searchPattern = $"{searchPattern}*";
-
-			return searchPattern;
-		}
 	}
 }

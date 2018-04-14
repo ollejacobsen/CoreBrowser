@@ -227,20 +227,5 @@ namespace CoreBrowser.Tests.Services
 
 			Assert.Equal(1, result.NrOfFiles);
 		}
-
-		[Theory]
-		[InlineData("search")]
-		[InlineData("search.ext")]
-		[InlineData("*search.ext")]
-		[InlineData("search.ext*")]
-		[InlineData("*search.ext*")]
-		public void CreateSearchPattern_should_find_on_implicit_wildcard(string pattern)
-		{
-			var searchPattern = ((FileSystemService)_fileService).CreateSearchPattern(pattern);
-
-			Assert.StartsWith("*", searchPattern);
-			Assert.EndsWith("*", searchPattern);
-			Assert.Equal(2, searchPattern.Count(x => x == '*'));
-		}
 	}
 }
