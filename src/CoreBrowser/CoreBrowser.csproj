@@ -1,42 +1,22 @@
-﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.0</TargetFramework>
-    <PreserveCompilationContext>true</PreserveCompilationContext>
-    <AssemblyName>CoreBrowser</AssemblyName>
-    <OutputType>Exe</OutputType>
-    <PackageId>CoreBrowser</PackageId>
-    <RuntimeIdentifiers>win10-x64;win81-x64;ubuntu.14.04-x64</RuntimeIdentifiers>
-    <RuntimeFrameworkVersion>2.0</RuntimeFrameworkVersion>
+    <UserSecretsId>9f486678-5d0b-4a1f-a10f-86c21b09840d</UserSecretsId>
+    <ProjectGuid>8abd64bb-9914-45ba-a79e-c1121b03c2ca</ProjectGuid>
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Properties\PublishProfiles\CoreBrowser20161026075844 - Web Deploy.pubxml" />
-    <None Remove="Properties\PublishProfiles\Default Settings.pubxml" />
+    <None Remove="Properties\PublishProfiles\FolderProfile.pubxml" />
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="wwwroot\**\*;Views\**\*;Areas\**\Views">
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-    </None>
-  </ItemGroup>
-
-  <ItemGroup>
+    <PackageReference Include="BuildBundlerMinifier" Version="2.6.375" />
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.6" />
-    <PackageReference Include="Microsoft.Extensions.Configuration.EnvironmentVariables" Version="2.0.1" />
-    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="2.0.1" />
-    <PackageReference Include="Microsoft.Extensions.Logging" Version="2.0.1" />
-    <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="2.0.1" />
-    <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="2.0.1" />
-    <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="2.0.1" />
   </ItemGroup>
 
-  <Target Name="PrepublishScript" BeforeTargets="PrepareForPublish">
-    <Exec Command="dotnet bundle" />
-  </Target>
-
   <ItemGroup>
-    <DotNetCliToolReference Include="BundlerMinifier.Core" Version="2.6.362" />
+    <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.0.3" />
   </ItemGroup>
 
 </Project>
