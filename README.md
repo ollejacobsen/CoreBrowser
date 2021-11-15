@@ -6,8 +6,6 @@
 A simple web file system browser build with .NET Core and MVC6. 
 Replacement for the standard web "directory browsing". Runs on Windows, Linux and OSX.
 
-You can see a demo at [http://corebrowser-demo.azurewebsites.net](http://corebrowser-demo.azurewebsites.net)
-
 # Features
 The idea is that CoreBrowser will display the content of a directory.
 A simple sort-by is implemented in the UI as well as search, file type icons and modal image browser.
